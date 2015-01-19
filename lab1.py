@@ -8,7 +8,7 @@
 #
 #
 import sys
-
+import psutil
 # Skriv inn fullt navn på gruppemedlemene (erstatte '-' med navn slikt 'Kari Trå')
 gruppe = {  'student1': 'Glenn Greibesland' }
 
@@ -158,7 +158,9 @@ def unicodeBin(character):
 #	Hvilke andre muligheter har man for å finne informasjon om maskinvare i GNU/Linux?
 #
 def printSysInfo():
-	pass
+	mem = psutil.virtual_memory()
+	hdd = psutil.disk_partitions()
+	print "Memory information: \n", mem, "\n\nHard drive information: \n", hdd
 
 
 def test():
