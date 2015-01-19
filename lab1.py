@@ -25,15 +25,18 @@ gruppe = {  'student1': 'Glenn Greibesland' }
 #    \_ /_/
 #    (./
 #     '` 
-def ascii_bird():
-	print 
-	       \/_
+def ascii_fugl():
+	thebird = """\
+       \/_
   \,   /( ,/
    \\\' ///
     \_ /_/
     (./
-     '` "
+     '`
+     """
+	print thebird
 
+ascii_fugl()
 # 
 #  Oppgave 2
 #    bitAnd - x&y
