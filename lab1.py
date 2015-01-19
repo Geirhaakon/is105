@@ -105,14 +105,14 @@ def transferBin(string):
 	l = list(string)
 	for c in l:
 		# skriv ut den binÃ¦re representasjon av hvert tegn (bruk ascii8Bin funksjonen din)
-		print "Den binÃ¦re representasjonen for %s:" % c, ascii8Bin(c)
+		return "Den binÃ¦re representasjonen for %s:" % c, ascii8Bin(c)
 		
 
 def transferBinSummary(string):
 	binString = ''
 	for char in string:
 		binString += ascii8Bin(char)
-		print "Hele den binære representasjonen av strengen: %s" % binString
+	return "Hele den binære representasjonen av strengen: %s" % binString
 #
 #  Oppgave 7
 #    transferHex - gjør det samme som transferBin, bare skriver ut representasjonen
@@ -124,13 +124,13 @@ def transferBinSummary(string):
 def transferHex(string):
 	l = list(string)
 	for c in l:
-		print "Den heksadesimale representasjonen for %s:" % c, ascii2Hex(c)
+		return "Den heksadesimale representasjonen for %s:" % c, ascii2Hex(c)
 
 def transferHexSummary(string):
 	hexString = ''
 	for char in string:
 		hexString += ascii2Hex(char)
-		print "Hele den binære representasjonen av strengen: %s" % hexString
+	return "Hele den binære representasjonen av strengen: %s" % hexString
 #
 #
 # Oppgave 8
@@ -171,6 +171,31 @@ def test():
 	assert ascii8Bin('A') == '01000001'
 	# Skriv her inn passende tester for tarnsferBin og transferHex funksjoner
 	# fra oppgavene 6 og 7
+	hexTestString = 'vanskeligTest'
+	hexTest = transferHexSummary(hexTestString).split(':')[1].strip()
+	assert hexTest == '76616e736b656c696754657374'
+	assert len(hexTest)/2 == len(hexTestString)
+	binTestString = 'VeldiGvanskeliG'
+	binTest = transferBinSummary(binTestString).split(':')[1].strip()
+	assert binTest == '010101100110010101101100011001000110100101000111011101100110000101101110011100110110101101100101011011000110100101000111'
+	assert len(binTest)/8 == len(binTestString)
+	
+	#Sjekk at transferBinSummary er riktig i forhold til ascii8Bin
+	binS = 0
+	binE = 8
+	for c in binTestString:
+		assert binTest[binS:binE] == ascii8Bin(c)
+		binS+=8
+		binE+=8 
+
+	#Sjekk at transferHexnSummary er riktig i forhold til ascii2Hex
+	hexS = 0
+	hexE = 2
+	for c in hexTestString:
+		assert hexTest[hexS:hexE] == ascii2Hex(c)
+		hexS+=2
+		hexE+=2 
+	
 	assert unicodeBin('å') == '11100101'
 	# Dine egne tester
 	return "Testene er fullført uten feil."
