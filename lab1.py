@@ -102,7 +102,7 @@ def ascii2Hex(letter):
 #	 Skriv selv inn tester ved å bruke assert i funksjonen test()
 #
 def transferBin(string): 
-	l = list(string)
+	l = list(string) # Ikke nødvendig å legge i liste.
 	for c in l:
 		# skriv ut den binÃ¦re representasjon av hvert tegn (bruk ascii8Bin funksjonen din)
 		return "Den binÃ¦re representasjonen for %s:" % c, ascii8Bin(c)

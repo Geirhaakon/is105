@@ -1,0 +1,103 @@
+Hva all koden betyr:
+
+#	
+Kommentar
+
+
+import
+Importer funksjonalitet fra andre moduler, slik at du kan bruke de i din applikasjon
+
+gruppe = {  'student1': 'Glenn Greibesland' }
+Her definerer du en dictionary som heter gruppe.
+Den inneholder i dette tilfellet kun en mapping, som mapper 'student1' mot 'Glenn Greibesland'
+
+
+def
+Definer er en funksjon. Etter def følger funksjonen eller metodens navn, deretter parantes etterfulgt av parametere funksjonen krever.
+F.eks printAge(name), denne krever 1 parameter som er name.
+Funksjoner som defineres uten parametere ser slik ut:
+printName()
+
+
+return
+Brukes i en funksjon for å gi en returverdi
+
+
+
+Bitwise operators
+AND &
+Xor ^
+OR |
+
+
+
+'{0:08b}'.format(ord(letter))
+
+format
+dette er en metode i String klassen som gjør at du kan formatere strengen, og konvertere mellom blant annet binary, octal, og hexadecimal output
+
+ord
+returnerer bokstavens/tegnes posisjon i ascii-tabellen
+
+l = list(string)
+Her lages det en liste i variabelen l som inneholder en oppføring pr. bokstav som gis som parameter.
+Eksempel:
+l = list('GLenn')
+l
+['G', 'L', 'e', 'n', 'n']
+
+
+for c in l:
+I dette tilfellet er l en liste (listen over).
+For hver oppføring i listen, kjøres kodeblokken som definerer under for-løkken, og oppføringen vi jobber med nå lagres i c.
+Løkken kjøres 1 gang for hver oppføring i listen.
+
+
+return "Den binære representasjonen for %s:" % c, ascii8Bin(c)
+Funksjonen returnerer en tekststreng.
+%s betyr at vi legger inn innholdet i variabelen c som en streng.
+Vi kan definere %s flere ganger i en slik returverdi, hver av disse blir erstattet i rekkefølge med variablene som er
+listet opp etter prosent-teknet etter strengen er slutt.
+komma ascii8Bin(c) betyr at returverdien til ascii8Bin(c) legges til i returverdien.
+
+
+	for char in string:
+		binString += ascii8Bin(char)
+For-løkken fungerer på samme vis som tidligere. For hver bokstav i strengen, kjøres løkken en gang.
+binString += asciii8Bin(char), betyr at returverdien til ascii8Bin(char) legges til på slutten av binString.
+Siden dette kjører en gang pr. bokstav, ender vi opp med en lang streng med binærkode for hver bokstav i
+input-string til funksjonen.
+
+
+	return ''.join(format(ord(i),'0>8b') for i in character)
+	
+	
+	
+		mem = psutil.virtual_memory()
+	hdd = psutil.disk_partitions()
+	
+	
+	assert
+	Kjør en test.
+	assert ditt() == 'datt'
+	Tester at returverdi av funksjon ditt erlik 'datt'
+	
+	
+	len
+	sjekk lengde på en variabel, antall tegn
+	
+	
+	split
+	Del opp en streng i flere substrings. Parameteret er hva du skal dele på.
+	
+	
+	strip
+	Fjern mellomrom før og etter i en string
+	
+	
+	string[x:y]
+	Slice en string opp, begynn på x, slutt på y, not inclusive.
+	
+	
+	
+	
