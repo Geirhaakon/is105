@@ -130,7 +130,7 @@ def transferHexSummary(string):
 	hexString = ''
 	for char in string:
 		hexString += ascii2Hex(char)
-	return "Hele den heksadesimale representasjonen for %s" % hexString
+	return "Hele den heksadesimale representasjonen strengen: %s" % hexString
 #
 #
 # Oppgave 8
@@ -172,7 +172,7 @@ def test():
 	# Skriv her inn passende tester for tarnsferBin og transferHex funksjoner
 	# fra oppgavene 6 og 7
 	hexTestString = 'vanskeligTest'
-	hexTest = transferHexSummary(hexTestString).split(':')[1].strip()
+	hexTest = transferHexSummary(hexTestString).split(':')[0].strip()
 	assert hexTest == '76616e736b656c696754657374'
 	assert len(hexTest)/2 == len(hexTestString)
 	binTestString = 'VeldiGvanskeliG'
