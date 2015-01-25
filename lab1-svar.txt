@@ -1,15 +1,69 @@
-Hva all koden betyr:
+//////////////////////////////////////////////////////////////////////////////////////////////////
+Ukens begreper og handlinger:
+=============================================================================================
+
+
+Operatørprioritet i Python
+=============================================================================================
+Operatørprioriteten avgjør i hvilken rekkefølge ulike deler av et utrykk skal beregnes.
+Standard i matematikk og programereringsspråk er følgende:
+
+    exponents and roots
+    multiplication and division
+    addition and subtraction 
+    
+Listen https://docs.python.org/2/reference/expressions.html#operator-precedence 
+viser hvilken rekkefølge som gjelder i Python.
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+One's complement
+=============================================================================================
+One's complement av en binærverdi er verdien du får ved å invertere
+alle bits (bytte 0 til 1, og 1 til 0). 
+Med denne One's complemement verdien, kan man regne med negative tall,
+vha End around carry og End around borrow.
+
+One's complement av 0011 er 1100.
+
+Å bruke One's complement gjør at man kan bruke like mange bits til
+å representere tall.
+Alternativet er å bruke  1 bit til å bestemme om verdien er positiv eller negativ.
+Dette kalles en "signed integer". Problemet med dette er at 1 bit går bort kun til
+å bestemme om det er en positiv eller negativ verdi.
+
+Ved å bruke One's complement notation, kan man komme rundt dette, og ha like mange
+bits tilgjengelig for å representere tallet.
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+Pass er et reservert ord i Python, hva er dets funksjon?
+=============================================================================================
+pass betyr at python bare skal hoppe videre i eksekvering av koden, uten å gjøre noenting.
+Kan være nyttig hvis man skriver signaturen til en funksjon, men ikke har skrevet
+kodeimplementasjonen enda.
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+3. Hva all koden betyr:
+=============================================================================================
 
 #	
 Kommentar
 
 
+
 import
 Importer funksjonalitet fra andre moduler, slik at du kan bruke de i din applikasjon
 
+
 gruppe = {  'student1': 'Glenn Greibesland' }
 Her definerer du en dictionary som heter gruppe.
-Den inneholder i dette tilfellet kun en mapping, som mapper 'student1' mot 'Glenn Greibesland'
+Den inneholder i dette tilfellet kun èn mapping, som mapper 'student1' mot 'Glenn Greibesland'
+
 
 
 def
@@ -17,6 +71,7 @@ Definer er en funksjon. Etter def følger funksjonen eller metodens navn, derette
 F.eks printAge(name), denne krever 1 parameter som er name.
 Funksjoner som defineres uten parametere ser slik ut:
 printName()
+
 
 
 return
@@ -36,8 +91,14 @@ OR |
 format
 dette er en metode i String klassen som gjør at du kan formatere strengen, og konvertere mellom blant annet binary, octal, og hexadecimal output
 
+
 ord
-returnerer bokstavens/tegnes posisjon i ascii-tabellen
+returnerer bokstavens/tegnes posisjon i ascii- eller unicode-tabellen.
+Aksepterer bare en singel ascii eller unicode-karakter som input.
+Eksempel på ascii: ord('a'), returnerer 97
+Eksempel på unicode: ord(u'\xe5') returnerer 229
+
+
 
 l = list(string)
 Her lages det en liste i variabelen l som inneholder en oppføring pr. bokstav som gis som parameter.
@@ -49,8 +110,15 @@ l
 
 for c in l:
 I dette tilfellet er l en liste (listen over).
-For hver oppføring i listen, kjøres kodeblokken som definerer under for-løkken, og oppføringen vi jobber med nå lagres i c.
+For hver oppføring i listen kjøres kodeblokken som definerer under for-løkken en gang.
+Variabelen c vil oppdateres hver gang løkken kjøres, og vil inneholde den oppføringen i
+l vi jobber med "denne gangen".
 Løkken kjøres 1 gang for hver oppføring i listen.
+
+"in" operatøren betyr bare at du ønsker å iterere over det du skriver til høyre for operatøren.
+I eksempelet over itererer vi over listen det henvises til i variabelen l.
+
+
 
 
 return "Den binære representasjonen for %s:" % c, ascii8Bin(c)
@@ -61,43 +129,248 @@ listet opp etter prosent-teknet etter strengen er slutt.
 komma ascii8Bin(c) betyr at returverdien til ascii8Bin(c) legges til i returverdien.
 
 
-	for char in string:
-		binString += ascii8Bin(char)
+
+
+for char in string:
+	binString += ascii8Bin(char)
 For-løkken fungerer på samme vis som tidligere. For hver bokstav i strengen, kjøres løkken en gang.
 binString += asciii8Bin(char), betyr at returverdien til ascii8Bin(char) legges til på slutten av binString.
 Siden dette kjører en gang pr. bokstav, ender vi opp med en lang streng med binærkode for hver bokstav i
 input-string til funksjonen.
 
 
-	return ''.join(format(ord(i),'0>8b') for i in character)
+
+letter = letter.decode('utf8')
+Dette har jeg forklart litt tidligere også.
+.decode funksjonen i String klassen konverterer verdien i stringen til en unicode-kode.
+I dette tilfellet erstatter jeg innholdet i letter med innholdet i utf8-format.
 	
 	
 	
-		mem = psutil.virtual_memory()
-	hdd = psutil.disk_partitions()
+mem = psutil.virtual_memory()
+funksjonen virtual_memory() i psutil modulen vil kjøres, og resultatet vil lagres i mem variabelen
+
+
+hdd = psutil.disk_partitions()
+funksjonen disk_partitions() i psutil modulen vil kjøres, og resultatet vil lagres i mem variabelen
 	
 	
-	assert
-	Kjør en test.
-	assert ditt() == 'datt'
-	Tester at returverdi av funksjon ditt erlik 'datt'
-	
-	
-	len
-	sjekk lengde på en variabel, antall tegn
-	
-	
-	split
-	Del opp en streng i flere substrings. Parameteret er hva du skal dele på.
-	
-	
-	strip
-	Fjern mellomrom før og etter i en string
-	
-	
-	string[x:y]
-	Slice en string opp, begynn på x, slutt på y, not inclusive.
-	
-	
-	
-	
+
+assert
+Kjør en test.
+assert ditt() == 'datt'
+Tester at returverdi av funksjon ditt erlik 'datt'
+
+
+len
+Returnerer lengden, antall elementer, i et objekt.
+Hvis parameteren er en enkelt string, vil vi få tilbake antall karakterer i stringen.
+Hvis vi bruker en liste som parameter, f.eks gruppe, som er definert i begynnelsen
+av lab1.py, vil vi få tilbake antall elementer i listen.
+I mitt tilfelle, inneholder gruppe bare 1 element.
+
+
+
+
+split
+Del opp en streng i flere substrings. Parameteret er hva du skal dele på.
+Returverdien er en liste over substrings.
+Eksempel:
+string = "Dette er en sting som inneholder noen ord"
+ string.split() vil gi deg følgende returverdi:
+['Dette', 'er', 'en', 'sting', 'som', 'inneholder', 'noen', 'ord']
+Det du fikk var en liste over alle ord som var i den opprinnelige stringen.
+Standard karakter å dele på for split() funksjonen er mellomrom, jeg kunne
+laget en string som så slik ut:
+string = "Terje, Per, Paul, Ole"
+og delt den slik:
+string.split(',')
+Nå får jeg tilbake en liste som ser slik ut:
+['Terje', ' Per', ' Paul', ' Ole']
+Legg merke til at det er mellomrom før de 3 siste navnene.
+Dette kan vi løse med den neste funksjonen jeg skal skrive om:
+
+
+
+
+strip
+Fjern mellomrom før og etter i en string
+string = ' Per'
+string.strip() returnerer 'Per'
+
+
+
+string[x:y]
+Slice en string opp, begynn på x, slutt på y, y er ikke inkludert i returverdi.
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+
+Spørsmål fra lab1.py
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+# Oppgave 9
+# 	Studer python module psutils (må vÃ¦re obs på versjon)
+#   Prøv å finne ut hvordan du kan finne ut og skrive ut følgende informasjon om din 
+#   datamaskin-node:
+#
+# 			Brand and model
+# 			Hard drive capacity
+# 			Amount of RAM
+# 			Model and speed of CPU
+# 			Display resolution and size
+# 			Operating system
+#	
+#	Forklar hvorfor man kan / ikke kan finne denne informasjon vha. psutil modulen.
+#	Skriv en funksjon printSysInfo som skriver ut den informasjon som psutil kan finne.
+#	Kan dere skrive en test for denne funksjonen?
+#	Hvilke andre muligheter har man for å finne informasjon om maskinvare i GNU/Linux?
+=============================================================================================
+Man kan ikke finne følgende vha. psutil modulen:
+* Brand and model
+* Model and speed of CPU
+* Display resolution and size
+* Operating system
+
+Årsak:
+Moduken er ikke laget for å vise denne informasjonen.
+psutil (python system and process utilities) er et cross-platform bibliotek
+som brukes til å hente ut informasjon om kjørende prosesser og bruk av CPU, minne, nettverk og disk.
+I følge dokumentasjonen implementerer den mye av funksjonaliteten som tilbys av disse kommandoene:
+ps, top, lsof, netstat, ifconfig, who, df, kill, free, nice, ionice, iostat, iotop, uptime, pidof, tty, taskset, pmap
+Ingen av disse gir informasjon om de 4 punktene nevnt over.
+ //////////////////////////////////////////////////////////////////////////////////////////////////
+ #	Skriv en funksjon printSysInfo som skriver ut den informasjon som psutil kan finne.
+#	Kan dere skrive en test for denne funksjonen?
+=============================================================================================
+ 
+Ja, man kan skrive en test for denne funksjonen.
+Problemet med funksjonen er at den bruker et print statement, ikke return.
+
+For å klare å teste den må man derfor klare å hente ut det funksjonen normalt sett
+ville printet til terminalen, og lagre det i en variabel.
+Deretter kan man teste om output er riktig.
+
+Et annet problem er at output vil være forskjellig basert på hvilken PC du kjører funksjonen på,
+siden den printer ut systemspesifikk informasjon.
+
+Man må derfor bare sjekke om output fra printSysInfo er det samme som f.eks:
+psutil.virtual_memory() og psutil.disk_partitions().
+
+Man må da vite eksakt hvordan dette printes ut, i min funksjon vil det først printes ut:
+'Memory information:' på en egen linje, etterfulgt av den faktiske psutil.virtual_memory() outputen,
+deretter en tom linje etterfulgt av en egenl inje hvor det står 'Hard drive information:'
+og til slutt en egen linje med output fra psutil.disk_partitions().
+Hvis jeg skulle testet dette, kunne jeg for eksempel splittet opp outputen fra min funksjon i
+en substring for hver linje, og deretter testet på linje nummer 2 og 5, at disse var like på 
+returverdi av henholdsvis psutil.virtual_memory() og psutil.disk_partitions(). 
+
+ 
+ 
+ //////////////////////////////////////////////////////////////////////////////////////////////////
+Alternative måter å finne info om systemet på:
+=============================================================================================
+
+cat /proc/cpuinfo
+Gir info om cpu
+=============================================================================================
+
+lshw
+Gir info om hardwaren din, inkludert hovedkort og "Brand/model"
+=============================================================================================
+
+lspci
+Viser alle PCI devices
+
+=============================================================================================
+
+fdisk -l
+Gir informasjon om harddisker med MBR partisjonstabell
+=============================================================================================
+
+gdisk -l
+Gir informasjon om harddisker med GPT partisjonstabell
+=============================================================================================
+
+df -h
+Viser alle partisjoner som er mounted, og gir oversikt over brukt og ledig plass.
+Parameteren -h betyr "human readable" og gir de informasjon i MB, GB eller TB i stedet for bytes.
+=============================================================================================
+
+du -h fil/mappenavn
+Viser størrelse på en eller flere filer/mapper.
+=============================================================================================
+
+uname -a
+Viser linux kjerneinfo
+=============================================================================================
+
+cat /etc/*-release
+Viser distro
+=============================================================================================
+
+top
+Viser prosesser og oversikt over minneforbruk og cpu-forbuk og mye mer.
+=============================================================================================
+
+iftop og iptraf
+Viser statistikk over nettverksbruk
+=============================================================================================
+
+iotop
+I/O monitor
+=============================================================================================
+
+xdpyinfo  | grep 'dimensions:'
+Gir deg oppløsning, hvis du er i en X session.
+For eksempel.
+$ xdpyinfo  | grep 'dimensions:'
+  dimensions:    3840x1080 pixels (1300x366 millimeters)
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////
+#  Oppgave 5
+#
+#  Tips:
+#    For å finne desimalverdien til et tegn kan funksjonen ord brukes, for eksempel
+#      ord('A') , det vil gi et tall 65 i ti-tallssystemet
+#    For å formattere 6 i ti-tallssystemet til 00000110 i to-tallssystemet
+#      '{0:08b}'.format(6)
+#      00000110
+#
+#    Formatteringsstrengen forklart:
+#      {} setter en variabel inn i strengen
+#      0 tar variabelen i argument posisjon 0
+#      : legger til formatteringsmuligheter for denne variabelen (ellers hadde den 6 desimalt)
+#      08 formatterer tall til 8 tegn og fuller med nuller til venstre hvis nødvendig
+#      b konverterer tallet til dets binÃ¦re representasjon
+#
+#	 Hvilke begrensninger vil en slik funksjon ha? (tips: prøv med bokstaven 'å', f.eks.)
+#	 Forklar resultatet ascii8Bin('å')
+#	 Hvilke faktorer påvirker resultatet? Forklar.
+
+
+=============================================================================================
+
+Begrensninger:
+Funksjonen vil være begrenset til fordi vi benytter den innebygedde python-funksjonen "ord".
+Denne aksepterer bare en enkelt karakter som input.
+Problemet med f.eks å, er at den blir om til '\kc3\xa5'
+Dette er to hex-verdier, og siden ord bare aksepterer 1 enkelt ascii eller unicode kode som input,
+vil det ikke fungere.
+Vi kan komme rundt dette ved å skrive om funksjonen til å decode utf8-hex verdien, slik:
+
+def ascii8Bin(letter):
+	letter = letter.decode('utf8')
+	return '{0:08b}'.format(ord(letter))
+
+Nå vil letter bli decodet til en enkelt unicode-kode, som funksjonen ord() vil akseptere som input.
+
+Hvis vi prøver med bokstaven 'å' nå, får vi:
+>>> ascii8Bin('å')
+'11100101'
+Og '11100101' = desimalverdien 229, som i følge denne ascii-tabellen er 'å'
+(http://www.barcoderesource.com/barcodeasciicharacters.shtml)
+
+Nå vil funksjonen kunne håndtere både norske og "vanlige" bokstaver.
+Har lagt inn den samme funksjonen i lab1.py med navnet unicodeBin

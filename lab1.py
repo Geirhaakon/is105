@@ -130,14 +130,14 @@ def transferHexSummary(string):
 	hexString = ''
 	for char in string:
 		hexString += ascii2Hex(char)
-	return "Hele den binære representasjonen av strengen: %s" % hexString
+	return "Hele den heksadesimale representasjonen for %s" % hexString
 #
 #
 # Oppgave 8
 # 		Implementer en funksjon unicodeBin, som kan behandle norske bokstaver
 # 		Kravspesifikasjon for denne funksjonen er den samme som for ascii8Bin funksjonen
 def unicodeBin(character):
-	return ''.join(format(ord(i),'0>8b') for i in character)
+	return '{0:08b}'.format(ord(letter.decode('utf8')))
 
 #
 # Oppgave 9
@@ -197,9 +197,10 @@ def test():
 		hexE+=2 
 	
 	assert unicodeBin('å') == '11100101'
-	# Dine egne tester
+
 	return "Testene er fullført uten feil."
 
+	
 
 # Bruk denne funksjonen for å vise at alle testene er kjørt feilfritt
 print test()
