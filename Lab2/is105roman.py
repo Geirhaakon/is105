@@ -6,7 +6,7 @@ romanNumeralMap = (('M', 1000),
                    ('L', 50),
                    ('XL', 40),
                    ('X', 10),
-                   ('IX', 9,)
+                   ('IX', 9),
                     ('V', 5),
                     ('IV', 4),
                     ('I', 1))
@@ -15,10 +15,10 @@ romanNumeralMap = (('M', 1000),
 def toRoman(n):
     if not isinstance(n, int):
         print "decimals cannot be converted"
-        break
+        return -1
     if not (0 < n < 5000):
         print "number is out of range. Valid range is 1-4999"
-        break
+        return -1
     
     result = ""
     for numeral, integer in romanNumeralMap:
