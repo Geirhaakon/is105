@@ -9,6 +9,8 @@
 #
 import sys
 import psutil
+import os
+import cpuinfo
 # Skriv inn fullt navn på gruppemedlemene (erstatte '-' med navn slikt 'Kari Trå)
 gruppe = {  'student1': 'Glenn Greibesland' }
 
@@ -162,8 +164,15 @@ def printSysInfo():
 	hdd = psutil.disk_partitions()
 	cpu = psutil.cpu_percent()
 	cpucores = psutil.cpu_percent(percpu=True)
+	uname = os.uname()
+	cpuinf = cpuinfo.get_cpu_info()
 	print "Memory information: \n", mem, "\n\nHard drive information: \n", hdd, "\n\nCPU Usage percent: ", cpu
-	print "\nCPU Usage pr core: ", cpucores
+	print "\nCPU Usage pr core: ", cpucores, "\n\nOperating System Info: \n", uname
+	print "\n\nCPU info from cpuinfo.py module: \n", cpuinf, "\n"
+	print('Brand: {0}'.format(cpuinf['brand']))
+	print('Hz Advertised: {0}'.format(cpuinf['hz_advertised']))
+	print('Arch: {0}'.format(cpuinf['arch']))
+	print('Bits: {0}'.format(cpuinf['bits']))
 
 def test():
 	assert bitAnd(6, 5) == 4
