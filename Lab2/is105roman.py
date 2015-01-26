@@ -20,7 +20,13 @@ def debug(s):
         
         
 def toRoman(n):
-   
+    error = "parameter must be integer, not decimal and in the range of 1 to 4999"
+    if not (str(n).isdigit()):
+        print error
+        return -1
+    elif not (0 < n < 5000):
+        print error
+        return -1 
     result = ""
     for numeral, integer in romanNumeralMap:
         debug(numeral + " " + str(integer))
