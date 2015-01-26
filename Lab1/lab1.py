@@ -160,8 +160,10 @@ def unicodeBin(character):
 def printSysInfo():
 	mem = psutil.virtual_memory()
 	hdd = psutil.disk_partitions()
-	print "Memory information: \n", mem, "\n\nHard drive information: \n", hdd
-
+	cpu = psutil.cpu_percent()
+	cpucores = psutil.cpu_percent(percpu=True)
+	print "Memory information: \n", mem, "\n\nHard drive information: \n", hdd, "\n\nCPU Usage percent: ", cpu
+	print "\nCPU Usage pr core: ", cpucores
 
 def test():
 	assert bitAnd(6, 5) == 4
@@ -203,5 +205,11 @@ def test():
 	
 
 # Bruk denne funksjonen for å vise at alle testene er kjørt feilfritt
+print '''\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+'''
 print test()
-		
+print '''\
+\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+'''
+printSysInfo()
