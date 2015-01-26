@@ -7,22 +7,51 @@ romanNumeralMap = (('M', 1000),
                    ('XL', 40),
                    ('X', 10),
                    ('IX', 9),
-                    ('V', 5),
-                    ('IV', 4),
+                   ('V', 5),
+                   ('IV', 4),
                     ('I', 1))
 
+romanDebug = False
 
+
+def debug(s):
+    if romanDebug:
+        print s
+        
+        
 def toRoman(n):
-    if not isinstance(n, int):
-        print "decimals cannot be converted"
-        return -1
-    if not (0 < n < 5000):
-        print "number is out of range. Valid range is 1-4999"
-        return -1
-    
+   
     result = ""
     for numeral, integer in romanNumeralMap:
-        while n<= integer:
+        debug(numeral + " " + str(integer))
+        while n >= integer:
             result += numeral
             n -= integer
+    return result
+
+def toInt(r):
+    r = r.upper() # Make everything uppercase
+    l = len(r) # Length of the roman number
+    # Set result to zero initially
+    # Initialize i for while loop, 
+    # and Initialize rpos, the current position in romanNumeralMap
+    result = i = rpos = 0 
+    rlen = len(romanNumeralMap) # Length of romanNumeralMap
+    while i < l and rpos < rlen:
+        rpos = 0 # reset each iteration
+        for numeral, integer in romanNumeralMap:
+            debug("Current position in romanNumeralMap: " + str(rpos))
+            nl = len(numeral)
+            debug("Length of current numeral: " + str(nl))
+            found = r.find(numeral, i, nl+i)
+            debug("searching for \'" + numeral + "\' in \'" + r[i:nl+i+1] + "\'")
+            if found != -1:
+                result += integer
+                i = found + len(numeral)
+                debug("Found " + numeral + ". Setting i to " + str(i) + " and result to " + str(result))
+                break
+            rpos += 1 #Increment the current position of the romanNumeralMap
+            if rpos == rlen:
+                print 'Illegal character \'%s\' found' % r[i:nl+i+1]
+                return -1
     return result
