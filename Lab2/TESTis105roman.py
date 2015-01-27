@@ -129,9 +129,9 @@ def testis105Roman():
     # ImplodeRoman should take a string of ony I's and return a complete roman numeral, neat and tidy.
     assert is105roman.implodeRoman('I'*1954) == 'MCMLIV'
     print '''\
-    ==========================================================
-    Testing completed
-    ==========================================================
+==========================================================
+Testing completed
+==========================================================
     '''
 
     return
