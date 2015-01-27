@@ -1,3 +1,4 @@
+from test.test_typechecks import Integer
 romanNumeralMap = (('M', 1000),
                    ('CM', 900),
                    ('D', 500),
@@ -60,4 +61,85 @@ def toInt(r):
             if rpos == rlen:
                 print 'Illegal character \'%s\' found' % r[i:nl+i+1]
                 return -1
+    return result
+
+
+
+def addRoman(left, right):
+    newString = left + right
+    print newString
+    return implodeRoman(newString)
+
+def subtractRoman(left, right):
+    left = explodeRoman(left)
+    right = explodeRoman(right)
+    if len(left) < len(right):
+        print "This would result in a negative number. Aborting"
+        return -1
+    print left, right
+    result = left[0:-(len(right))]
+    return result
+
+def multiplyRoman(left, right):
+    left = explodeRoman(left)
+    right = explodeRoman(right)
+    result = '' 
+    i = 1
+    while i <= len(right):
+         result += left
+         i += 1
+    return implodeRoman(result)
+
+
+def divideRoman(left, right):
+    left = explodeRoman(left)
+    right = explodeRoman(right)
+    result = '' 
+    
+    i = len(left)
+    r = len(right)
+    while i >= r:
+         result += 'I'
+         i -= r
+    return implodeRoman(result)
+
+def explodeRoman(r):
+    result = '' 
+    i = rpos = 0 
+    rlen = len(romanNumeralMap) # Length of romanNumeralMap
+    l = len(r)
+    d=dict() # Keep number of occurences for each numeral here
+    v=dict() # Dictionary that maps numerals to values
+    # Put all numerals into a dictionary with the value 0 assigned
+    # Also keep a dictionary with how much each numeral is worth in decimal value.
+    for numeral, integer in romanNumeralMap:
+        d[numeral] = 0
+        v[numeral] = integer
+    while i < l and rpos < rlen:
+        rpos = occurences = 0
+        for numeral, integer in romanNumeralMap:
+            nl = len(numeral)
+            found = r.find(numeral, i, nl+i)
+            # If a numeral is found, increment it's occurence in the 'd' dictionary once for each occurence.
+            if found != -1:
+                d[numeral] += 1
+                i = found + len(numeral)
+    # Now d should hold information about how many occurences there are for each roman numeral
+    # Convert into single I's
+    for numeral in d:
+        result += 'I' * (d[numeral]*v[numeral])
+    return result
+
+def implodeRoman(r):
+    result = ''
+    r = explodeRoman(r)
+    numIs = len(r) # How many occurences of I?
+    for numeral, integer in romanNumeralMap:
+        
+        if numIs == 0:
+            break;
+        while numIs >= integer:
+            # 1001
+            result += numeral
+            numIs -= integer
     return result
