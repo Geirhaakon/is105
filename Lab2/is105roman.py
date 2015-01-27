@@ -78,7 +78,7 @@ def subtractRoman(left, right):
         print "This would result in a negative number. Aborting"
         return -1
     result = left[0:-(len(right))]
-    return result
+    return implodeRoman(result)
 
 def multiplyRoman(left, right):
     left = explodeRoman(left)
