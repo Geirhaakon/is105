@@ -1,4 +1,3 @@
-from test.test_typechecks import Integer
 romanNumeralMap = (('M', 1000),
                    ('CM', 900),
                    ('D', 500),
@@ -86,8 +85,8 @@ def multiplyRoman(left, right):
     result = '' 
     i = 1
     while i <= len(right):
-         result += left
-         i += 1
+        result += left
+        i += 1
     return implodeRoman(result)
 
 
@@ -98,9 +97,14 @@ def divideRoman(left, right):
     
     i = len(left)
     r = len(right)
+    # Check if number is even
+    if i%r != 0:
+        print "The result is not an even number"
+        return -1
+    # The number of times this loops runs, is the result of the divition.
     while i >= r:
-         result += 'I'
-         i -= r
+        result += 'I'
+        i -= r
     return implodeRoman(result)
 
 def explodeRoman(r):
