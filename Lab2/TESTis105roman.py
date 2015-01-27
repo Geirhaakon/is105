@@ -5,19 +5,23 @@ Created on 27. jan. 2015
 '''
 
 import is105roman
-from is105roman import explodeRoman
 # This file demonstrates how to use is105roman.py, and it tests that the module works correctly.
 
 print '''\
+==========================================================
 A series of tests will now run.
 Some of the tests prints out a message to the terminal,
 some of them will be errors.
 As long as no assertion errors appear, the test is OK.
 
+==========================================================
 An assertion error would look something like this:
+/////////////////////////////////////////////////
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 AssertionError
+/////////////////////////////////////////////////
+
 
 Starting tests
 ==========================================================
