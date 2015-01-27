@@ -46,15 +46,15 @@ def toInt(r):
     while i < l and rpos < rlen:
         rpos = 0 # reset each iteration
         for numeral, integer in romanNumeralMap:
-            debug("Current position in romanNumeralMap: " + str(rpos))
+            #debug("Current position in romanNumeralMap: " + str(rpos))
             nl = len(numeral)
-            debug("Length of current numeral: " + str(nl))
+            #debug("Length of current numeral: " + str(nl))
             found = r.find(numeral, i, nl+i)
-            debug("searching for \'" + numeral + "\' in \'" + r[i:nl+i+1] + "\'")
+            #debug("searching for \'" + numeral + "\' in \'" + r[i:nl+i+1] + "\'")
             if found != -1:
                 result += integer
                 i = found + len(numeral)
-                debug("Found " + numeral + ". Setting i to " + str(i) + " and result to " + str(result))
+                #debug("Found " + numeral + ". Setting i to " + str(i) + " and result to " + str(result))
                 break
             rpos += 1 #Increment the current position of the romanNumeralMap
             if rpos == rlen:
@@ -66,7 +66,6 @@ def toInt(r):
 
 def addRoman(left, right):
     newString = left + right
-    print newString
     return implodeRoman(newString)
 
 def subtractRoman(left, right):
