@@ -36,6 +36,9 @@ def toRoman(n):
     return result
 
 def toInt(r):
+    if str(r).isdigit():
+        print 'Please supply a string of roman numerals as parameter'
+        return -1
     r = r.upper() # Make everything uppercase
     l = len(r) # Length of the roman number
     # Set result to zero initially
@@ -74,7 +77,6 @@ def subtractRoman(left, right):
     if len(left) < len(right):
         print "This would result in a negative number. Aborting"
         return -1
-    print left, right
     result = left[0:-(len(right))]
     return result
 
