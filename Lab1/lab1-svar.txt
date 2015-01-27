@@ -232,7 +232,7 @@ Man kan ikke finne følgende vha. psutil modulen:
 * Operating system
 
 Årsak:
-Moduken er ikke laget for å vise denne informasjonen.
+Modulen er ikke laget for å vise denne informasjonen.
 psutil (python system and process utilities) er et cross-platform bibliotek
 som brukes til å hente ut informasjon om kjørende prosesser og bruk av CPU, minne, nettverk og disk.
 I følge dokumentasjonen implementerer den mye av funksjonaliteten som tilbys av disse kommandoene:
