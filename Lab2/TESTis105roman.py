@@ -33,7 +33,7 @@ assert is105roman.toInt('x') == 10
 
 # Check that large roman numerals work
  
-assert is105roman.toInt('MCMXLIV') == 1954 # The last time I saw Paris
+assert is105roman.toInt('MCMLIV') == 1954 # The last time I saw Paris
 assert is105roman.toInt('MMXIV') == 2014
 
 # Check that each roman numeral has the correct decimal Value
