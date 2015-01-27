@@ -238,13 +238,28 @@ som brukes til å hente ut informasjon om kjørende prosesser og bruk av CPU, minn
 I følge dokumentasjonen implementerer den mye av funksjonaliteten som tilbys av disse kommandoene:
 ps, top, lsof, netstat, ifconfig, who, df, kill, free, nice, ionice, iostat, iotop, uptime, pidof, tty, taskset, pmap
 Ingen av disse gir informasjon om de 4 punktene nevnt over.
+
+Jeg la til en ekstra modul som heter cpuinfo, som kan hente ut noe info om CPU.
+Det er ikke noe problem å hente ut all infoen det blir spurt etter, men psutil kan ikke hente alt.
+Informasjonen kan hentes ut via linux-kommandoer, eller flere ekstramoduler.
+Hvis det har noen hensikt for oppgaven, kan jeg skrive de inn. Gi meg i så fall beskjed.
+
+Alternative måter å finne denne informasjonen på er nevnt lengre ned i besvarelsen
+
+
  //////////////////////////////////////////////////////////////////////////////////////////////////
  #	Skriv en funksjon printSysInfo som skriver ut den informasjon som psutil kan finne.
 #	Kan dere skrive en test for denne funksjonen?
 =============================================================================================
  
-Ja, man kan skrive en test for denne funksjonen.
-Problemet med funksjonen er at den bruker et print statement, ikke return.
+Ja, man kan skrive en test for denne funksjonen, men man vil ikke kunne teste alt, og det kan diskuteres
+om det har noe for seg, siden den bare printer ut informasjon om noden.
+
+Det er spesielt vanskelig å teste siden funksjonen inkluderer hvor mange % cpu forbruk man har på et visst punkt,
+siden dette kan variere fra når det skrives ut via print statement, til jeg sjekker ved å kjøre kommandoen
+i en assert setning.
+
+Et annet problem med funksjonen er at den bruker et print statement, ikke return.
 
 For å klare å teste den må man derfor klare å hente ut det funksjonen normalt sett
 ville printet til terminalen, og lagre det i en variabel.
@@ -259,7 +274,7 @@ psutil.virtual_memory() og psutil.disk_partitions().
 Man må da vite eksakt hvordan dette printes ut, i min funksjon vil det først printes ut:
 'Memory information:' på en egen linje, etterfulgt av den faktiske psutil.virtual_memory() outputen,
 deretter en tom linje etterfulgt av en egenl inje hvor det står 'Hard drive information:'
-og til slutt en egen linje med output fra psutil.disk_partitions().
+og deretter en egen linje med output fra psutil.disk_partitions() osv.....
 Hvis jeg skulle testet dette, kunne jeg for eksempel splittet opp outputen fra min funksjon i
 en substring for hver linje, og deretter testet på linje nummer 2 og 5, at disse var like på 
 returverdi av henholdsvis psutil.virtual_memory() og psutil.disk_partitions(). 
@@ -319,6 +334,8 @@ Viser statistikk over nettverksbruk
 iotop
 I/O monitor
 =============================================================================================
+
+
 
 xdpyinfo  | grep 'dimensions:'
 Gir deg oppløsning, hvis du er i en X session.
