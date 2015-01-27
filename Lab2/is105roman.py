@@ -101,7 +101,7 @@ def divideRoman(left, right):
     if i%r != 0:
         print "The result is not an even number"
         return -1
-    # The number of times this loops runs, is the result of the divition.
+    # The number of times this loops runs, is the result of the division.
     while i >= r:
         result += 'I'
         i -= r
@@ -120,7 +120,7 @@ def explodeRoman(r):
         d[numeral] = 0
         v[numeral] = integer
     while i < l and rpos < rlen:
-        rpos = occurences = 0
+        rpos = 0
         for numeral, integer in romanNumeralMap:
             nl = len(numeral)
             found = r.find(numeral, i, nl+i)
