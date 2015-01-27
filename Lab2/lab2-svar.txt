@@ -136,3 +136,28 @@ terra
           size: 87KiB
           capabilities: isa pci pcmcia pnp apm upgrade shadowing escd cdboot bootselect edd int5printscreen int9keyboard int14serial int17printer int10video acpi smartbattery biosbootspecification netboot
    
+   
+   
+   
+   
+ Når systemet ble installert (17 mars 2011)
+  ls -l /var/log/installer/
+total 2012
+drwxr-xr-x 2 root root    4096 Mar 17  2011 cdebconf
+-rw-r--r-- 1 root root   20037 Mar 17  2011 hardware-summary
+-rw-r--r-- 1 root root  115006 Mar 17  2011 initial-status.gz
+-rw-r--r-- 1 root root     125 Mar 17  2011 lsb-release
+-rw-r--r-- 1 root root      65 Mar 17  2011 media-info
+-rw------- 1 root root 1470674 Mar 17  2011 partman
+-rw-r--r-- 1 root root   57669 Mar 17  2011 status
+-rw------- 1 root root  370445 May  5  2014 syslog
+
+
+Opprinnelig versjon ved installasjon:
+cat /var/log/installer/lsb-release
+DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=10.10
+DISTRIB_CODENAME=maverick
+DISTRIB_DESCRIPTION="Ubuntu maverick (development branch)"
+
+ 
