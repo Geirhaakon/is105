@@ -1,0 +1,138 @@
+
+(1) Hva er grunnleggende forskjeller på det desimale og det romerske
+tallsystemet? (forklar fra designperspektivet)
+
+Det romerske tallsystemet består av symboler som man setter sammen.
+Mange forskjellige sammensetninger kan representere den samme verdien.
+
+Hvis man skal legge sammen to romerske tall, kan man bare slå sammen
+begge verdiene.
+For eksempel: XV + XX = XXXV
+
+Hovedregelen er at man verdien skal sorteres etter høyeste romerske
+tall først, deretter mindre og mindre verdier.
+
+Hvis man legger sammen for eksempel: VIII + XVI, får man VIIIXVI,
+men dette må sorteres, og blir XVVIIII.
+
+Regelen er også at man skal erstatte symboler med lavere verdi med symboler
+av høyere verdi, hvis det passer slik.
+For eksmpel VV kan erstattes med X, siden VV har samme verdi som X.
+
+I eksempelet over kan vi konvertere XVVIIII til XXIV
+IV er det samme som IIII (4). Hvis man setter en mindre verdi
+foran et større verdi, betyr det at man trekker fra verdien foran.
+Her er det også et regelsett å følge.
+Symbolene som representerer 1, 10 og 100 kan brukes til å sette foran
+de to neste symbolene som er i høyere i verdi, ved å skrive den minste
+verdien til venstre.
+Gyldige verdier som benyttes på denne måten:
+IV	4  V minus I
+IX	9  X minus I
+XL	40 L minus X
+XC	90 C minus X
+CD	400 D minus C
+CM	900 M minus C
+
+Reglene som er nevnt over ble ikke alltid fulgt. Siden det finnes mange måter
+å skrive det samme tallet på, ble ikke alltid riktig standard fulgt.
+Dette førte til at systemet var litt tungvindt å bruke.
+100 for eksempel, kan skrives på disse, og flere måter:
+XXXXXXXXXX
+LL
+C
+ 
+
+For å oppsummere
+Det romerske tallsystemet består av symboler som representerer spesifikke verdier.
+Disse setter sammen for å representer en verdi.
+Problemet er at systemet ikke har noen 0.
+Dette resulterer i at flere og flere symboler settes etter hverandre.
+Det er 7 symboler å holde styr på, IVXLCDM.
+M, den største verdien er det samme som 1000.
+Hvis du skal representere 2 000, må du sette to M-er ved siden av hverandre.
+
+Dette gjorde systemet komplisert å bruke, f.eks 1348 er MCCCXLVII.
+Det er mange symboler, og å regne på dette kunne være mer tidkrevende
+enn med vårt arabiske tallsystem.
+
+I desimalsystemet har vi en 0 og en place value.
+For å gjøre en verdi 10 ganger høyere eller lavere, kan man trekke fra
+eller legge til en 0 (flytte komma en plass til høyre for høyere verdi,
+en plass til venstre for lavere verdi.)
+
+I desimalsystemet har plasseringen av tallene noe å si.
+500 er ikke det samme som 050.
+I det romerske tallsystemet har ikke dette noe å si.
+XV er det samme som VX.
+
+I desimalsystemet kan vi øke verdien, og lettere lese verdien siden vi har
+place value.
+
+
+(2) Hva er grunnleggende systeminformasjon for systemet som testene er blitt
+utført på (operativssystemet, distribusjon, informasjon om CPU type)? Se
+under for forslag hvordan man finner slik informasjon.
+
+
+cat /etc/*-release
+DISTRIB_ID=Ubuntu
+DISTRIB_RELEASE=14.04
+DISTRIB_CODENAME=trusty
+DISTRIB_DESCRIPTION="Ubuntu 14.04.1 LTS"
+NAME="Ubuntu"
+VERSION="14.04.1 LTS, Trusty Tahr"
+ID=ubuntu
+ID_LIKE=debian
+PRETTY_NAME="Ubuntu 14.04.1 LTS"
+VERSION_ID="14.04"
+HOME_URL="http://www.ubuntu.com/"
+SUPPORT_URL="http://help.ubuntu.com/"
+BUG_REPORT_URL="http://bugs.launchpad.net/ubuntu/"
+
+
+
+cat /proc/version
+Linux version 3.13.0-24-generic (buildd@batsu) (gcc version 4.8.2 (Ubuntu 4.8.2-19ubuntu1) ) #47-Ubuntu SMP Fri May 2 23:30:00 UTC 2014
+
+
+uname -a
+Linux terra 3.13.0-24-generic #47-Ubuntu SMP Fri May 2 23:30:00 UTC 2014 x86_64 x86_64 x86_64 GNU/Linux
+
+uname -mrs
+Linux 3.13.0-24-generic x86_64
+
+cat /proc/cpuinfo | grep “model name” 
+model name      : Intel(R) Core(TM) i5-3470 CPU @ 3.20GHz
+
+cat /proc/meminfo |grep MemTotal
+MemTotal:        8176768 kB
+
+
+
+utrag fra lshw
+terra
+    description: Computer
+    product: VMware Virtual Platform ()
+    vendor: VMware, Inc.
+    version: None
+    serial: VMware-56 4d 6f 6a 49 cc d1 51-fa 10 79 8f 1a 95 ef 39
+    width: 64 bits
+    capabilities: smbios-2.4 dmi-2.4 vsyscall32
+    configuration: administrator_password=enabled boot=normal frontpanel_password=unknown keyboard_password=unknown power-on_password=disabled uuid=564D6F6A-49CC-D151-FA10-798F1A95EF39
+  *-core
+       description: Motherboard
+       product: 440BX Desktop Reference Platform
+       vendor: Intel Corporation
+       physical id: 0
+       version: None
+       serial: None
+     *-firmware
+          description: BIOS
+          vendor: Phoenix Technologies LTD
+          physical id: 0
+          version: 6.00
+          date: 06/22/2012
+          size: 87KiB
+          capabilities: isa pci pcmcia pnp apm upgrade shadowing escd cdboot bootselect edd int5printscreen int9keyboard int14serial int17printer int10video acpi smartbattery biosbootspecification netboot
+   
