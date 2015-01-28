@@ -85,7 +85,7 @@ def multiplyRoman(left, right):
     right = explodeRoman(right)
     result = '' 
     i = 1
-    while i <= len(right):
+    while i <= len(right): # Could re-write this to be a for-loop to avoid using the length of the variable right.
         result += left
         i += 1
     return implodeRoman(result)
@@ -103,7 +103,7 @@ def divideRoman(left, right):
         print "The result is not an even number"
         return -1
     # The number of times this loops runs, is the result of the division.
-    while i >= r:
+    while i >= r: # Could also use a for loop, to avoid using length of left and right
         result += 'I'
         i -= r
     return implodeRoman(result)
