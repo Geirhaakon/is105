@@ -17,5 +17,5 @@ print 'The server is ready to receive'
 # Loop which listens for data from a client.
 while 1:
     message, clientAddress = serverSocket.recvfrom(2048)
-    modifiedMessage = message.upper()
+    modifiedMessage = message.decode('utf-8').upper().encode('utf-8')
     serverSocket.sendto(modifiedMessage, clientAddress)
