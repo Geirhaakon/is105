@@ -5,5 +5,13 @@ Jeg ser at hvis jeg sender lowercase a til serveren, får jeg tilbake uppercase 
 lowercase a er 01 10 00 01 binært
 uppercase A er 01 00 00 01 binært
 
-Ved å teste flere bokstaver og tekststrenger har jeg verifisert at posisjon nr 3 fra venstre i binærkoden bestemmer om det er upper eller lowercase.
+Ved å teste flere bokstaver og tekststrenger har jeg verifisert at posisjon nr 3 fra venstre, eller bit nummer 6, i binærkoden bestemmer om det er upper eller lowercase.
 
+Ved å flippe bit nummer 6, kan man konvertere en bokstav fra upper til lowercase og omvent.
+
+Hvis du jobber med desimalverdier i ascii-tabellen, kan du trekke ifra 32 for å få lowercase, og legge til 32 for å få uppercase.
+
+Grunnen til at det er slik, er at bit nummer 6 er desimalverdien 32.
+Siden vi kan flippe bit nummer 6 for å bytte mellom upper og lowercase, skal man da også kunne plusse på eller trekke fra 32 for å å få samme resultat, hvis man jobber med desimalverdiene bak bokstaver i ascii-tabellen.
+
+Se filen UpperLowerExperiment.py hvor dette er testet.
