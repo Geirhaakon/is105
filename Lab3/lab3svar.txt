@@ -1,0 +1,9 @@
+3.
+Bokstavene blir sendt binært.
+Ved å sette wireshark til å vise "Bit view" og velge en pakke som har blitt sendt fra client til server eller server til client, ser man at hver bokstav har blitt sendt over og at hver bokstav representeres av 8 bit.
+Jeg ser at hvis jeg sender lowercase a til serveren, får jeg tilbake uppercase A fra server.
+lowercase a er 01 10 00 01 binært
+uppercase A er 01 00 00 01 binært
+
+Ved å teste flere bokstaver og tekststrenger har jeg verifisert at posisjon nr 3 fra venstre i binærkoden bestemmer om det er upper eller lowercase.
+
