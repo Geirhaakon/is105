@@ -3,7 +3,7 @@
 #
 #  IS-105 LAB1
 #
-#  lab1.py - kildekode vil inneholde studentenes løning.
+#  lab1.py - kildekode vil inneholde studentenes løsning.
 #         
 #
 #
@@ -27,6 +27,8 @@ gruppe = {  'student1': 'Glenn Greibesland' }
 #    \_ /_/
 #    (./
 #     '` 
+'''
+Gammel fugl
 def ascii_fugl():
 	thebird = """\
        \/_
@@ -37,6 +39,23 @@ def ascii_fugl():
      '`
      """
 	print thebird
+'''
+
+# Ny fugl
+ws = ' '
+print ws*8,
+print '\\/_'
+print ws*2,
+print '\\,   \\/( ,/'
+print ws*3,
+print '\\\\\\\' ///'
+print ws*4,
+print '\\_ /_/'
+print ws*4,
+print '(./'
+print ws*5,
+print '\'`'
+
 
 #  Oppgave 2
 #    bitAnd - x&y
@@ -114,7 +133,7 @@ def transferBinSummary(string):
 	binString = ''
 	for char in string:
 		binString += ascii8Bin(char)
-	return "Hele den bin�re representasjonen av strengen \'%s\' er: %s" % (string, binString)
+	return "Hele den binære representasjonen av strengen \'%s\' er: %s" % (string, binString)
 #
 #  Oppgave 7
 #    transferHex - gjør det samme som transferBin, bare skriver ut representasjonen
