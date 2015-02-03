@@ -54,7 +54,7 @@ def startServer():
     # Loop which listens for data from a client.
     while 1:
         message, clientAddress = serverSocket.recvfrom(2048)
-        messagefromClient = decodeData(json.loads(message))
+        messagefromClient = json.loads(message, encoding="utf-8")
         
         decodedMessage = messagefromClient[1]
         command = messagefromClient[0] #.decode('utf-8')
@@ -62,30 +62,33 @@ def startServer():
         lab3debug('Command is:' + command)
         
         if command == unicode('system') and decodedMessage == unicode('getFunctions'):
-            reply = json.dumps(supportedFunc)
+            reply = json.dumps(supportedFunc, encoding="utf-8")
         if command == unicode('system') and decodedMessage == unicode('shutdown'):
             print 'Exiting server application'
             break
         if command == unicode('u'):
             reply = decodedMessage.upper() #.encode('utf-8')
-            reply = json.dumps(encodeData((reply)))
+            reply = json.dumps((reply), encoding="utf-8")
         if command == unicode('d'):
             charReply = reply = ''
             for l in decodedMessage:
-                reply += chr(charToUpperDec(l))
+                print type(l)
+                reply += unichr(charToUpperDec(l))#.decode('utf-8')
                 charReply += str(charToUpperDec(l)) + ' '
-            reply = json.dumps(encodeData((reply, charReply)))
+                print type(reply), type(charReply)
+            print type(reply)
+            reply = json.dumps((reply, charReply), encoding="utf-8")
         if command == unicode('b'):
             charReply = binReply = reply = ''
             for l in decodedMessage:
-                reply += chr(charToUpperBin(l))
+                reply += unichr(charToUpperBin(l))
                 charReply += str(charToUpperBin(l)) + ' '
-                binReply += unicodeBin(chr(charToUpperBin(l))) + ' '
-            reply = json.dumps(encodeData((reply, charReply, binReply)))
+                binReply += bin(charToUpperBin(l)) + ' '
+            reply = json.dumps((reply, charReply, binReply), encoding="utf-8")
             
         # Roman functions
         if command == unicode('r'):
-            reply = json.dumps(supportedRomanFunc)
+            reply = json.dumps(supportedRomanFunc, encoding="utf-8")
             
             # Entery a new loop where we accept only roman commands
 

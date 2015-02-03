@@ -180,6 +180,7 @@ def implodeRoman(r):
             numIs -= integer
     return result
 
+'''
 def encodeData(lst):
     # Only put data into a list if the input type is not basestring
     if isinstance(lst, basestring):
@@ -187,6 +188,7 @@ def encodeData(lst):
     else:
         reply = []
         for element in lst:
+            print type(element)
             reply.append(element.encode('utf-8'))
     return reply
 
@@ -197,5 +199,7 @@ def decodeData(lst):
     else:
         reply = []
         for element in lst:
+            print type(element)
             reply.append(element.decode('utf-8'))
     return reply
+'''

@@ -4,7 +4,7 @@ Created on 2. feb. 2015
 @author: GGreibesland
 '''
 from socket import *
-from lab3supportmodule import encodeData, decodeData
+#from lab3supportmodule import encodeData, decodeData
 import json
 
 serverName = 'localhost' # Server to connect to
@@ -15,10 +15,10 @@ verboseMode = True
 
 # Receive list of functions from server
 def getSupportedFuncFromServer():
-    command = json.dumps(encodeData(('system', 'getFunctions')))
+    command = json.dumps(('system', 'getFunctions'), encoding="utf-8")
     clientSocket.sendto(command,(serverName, serverPort))
     result, serverAddress = clientSocket.recvfrom(2048)
-    return json.loads(result)
+    return json.loads(result, encoding="utf-8")
 
 def printSupportedFunc():
     print 'This application supports %i commands:' % len(supportedFunc)
@@ -45,12 +45,13 @@ def getCommandCategoryMap():
 
 def upperConvert(fun):
     # Ask user for input, decode, encode, then send.
-    message = raw_input('Input lowercase sentence:').decode('utf8').encode('utf8')
+    message = raw_input('Input lowercase sentence:')
+    message = message.decode('utf8')
     # Prepend the function to run in the message followed by a colon
-    message = json.dumps(encodeData((fun, message)))
+    message = json.dumps((fun, message), encoding="utf-8")
     clientSocket.sendto(message,(serverName, serverPort))
     msgFromServer, serverAddress = clientSocket.recvfrom(2048)
-    jsonFromServer = decodeData(json.loads(msgFromServer))
+    jsonFromServer = json.loads(msgFromServer, encoding="utf-8")
     print '==========================\nReply from server:'
     print 'Characters in uppercase: ',
     if fun == 'u':
@@ -75,7 +76,7 @@ def sysFunctions(fun):
         print 'Verbose mode on: ', verboseMode
 
 def shutdownServer():
-    message = json.dumps(('system', 'shutdown'))
+    message = json.dumps(('system', 'shutdown'), encoding="utf-8")
     clientSocket.sendto(message,(serverName, serverPort))
 
 #Save a list of supported functions for later use
