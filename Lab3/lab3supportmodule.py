@@ -3,6 +3,7 @@ Created on 2. feb. 2015
 
 @author: GGreibesland
 '''
+#from lab3server import lab3debug
 
 '''
 Input c: a character
@@ -178,3 +179,23 @@ def implodeRoman(r):
             result += numeral
             numIs -= integer
     return result
+
+def encodeData(lst):
+    # Only put data into a list if the input type is not basestring
+    if isinstance(lst, basestring):
+        reply = lst.encode('utf-8')
+    else:
+        reply = []
+        for element in lst:
+            reply.append(element.encode('utf-8'))
+    return reply
+
+def decodeData(lst):
+    # Only put data into a list if the input type is not basestring
+    if isinstance(lst, basestring):
+        reply = lst.decode('utf-8')
+    else:
+        reply = []
+        for element in lst:
+            reply.append(element.decode('utf-8'))
+    return reply

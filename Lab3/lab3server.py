@@ -54,9 +54,10 @@ def startServer():
     # Loop which listens for data from a client.
     while 1:
         message, clientAddress = serverSocket.recvfrom(2048)
-        messagefromClient = json.loads(message)
-        decodedMessage = messagefromClient[1].decode('utf-8')
-        command = messagefromClient[0].decode('utf-8')
+        messagefromClient = decodeData(json.loads(message))
+        
+        decodedMessage = messagefromClient[1]
+        command = messagefromClient[0] #.decode('utf-8')
         lab3debug('Message from client is: ' + message)
         lab3debug('Command is:' + command)
         
@@ -66,21 +67,21 @@ def startServer():
             print 'Exiting server application'
             break
         if command == unicode('u'):
-            reply = decodedMessage.upper().encode('utf-8')
-            reply = json.dumps((reply))
+            reply = decodedMessage.upper() #.encode('utf-8')
+            reply = json.dumps(encodeData((reply)))
         if command == unicode('d'):
             charReply = reply = ''
             for l in decodedMessage:
                 reply += chr(charToUpperDec(l))
                 charReply += str(charToUpperDec(l)) + ' '
-            reply = json.dumps((reply, charReply))
+            reply = json.dumps(encodeData((reply, charReply)))
         if command == unicode('b'):
             charReply = binReply = reply = ''
             for l in decodedMessage:
                 reply += chr(charToUpperBin(l))
                 charReply += str(charToUpperBin(l)) + ' '
                 binReply += unicodeBin(chr(charToUpperBin(l))) + ' '
-            reply = json.dumps((reply, charReply, binReply))
+            reply = json.dumps(encodeData((reply, charReply, binReply)))
             
         # Roman functions
         if command == unicode('r'):

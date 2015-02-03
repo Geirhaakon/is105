@@ -4,16 +4,18 @@ Created on 2. feb. 2015
 @author: GGreibesland
 '''
 from socket import *
+from lab3supportmodule import encodeData, decodeData
 import json
 
 serverName = 'localhost' # Server to connect to
 serverPort = 12000 # Remote server port
 clientSocket = socket(AF_INET, SOCK_DGRAM)
-
+global verboseMode 
+verboseMode = True
 
 # Receive list of functions from server
 def getSupportedFuncFromServer():
-    command = json.dumps(('system', 'getFunctions'))
+    command = json.dumps(encodeData(('system', 'getFunctions')))
     clientSocket.sendto(command,(serverName, serverPort))
     result, serverAddress = clientSocket.recvfrom(2048)
     return json.loads(result)
@@ -43,21 +45,22 @@ def getCommandCategoryMap():
 
 def upperConvert(fun):
     # Ask user for input, decode, encode, then send.
-    message = raw_input('Input lowercase sentence:')
+    message = raw_input('Input lowercase sentence:').decode('utf8').encode('utf8')
     # Prepend the function to run in the message followed by a colon
-    message = json.dumps((fun, message)).decode('utf8').encode('utf8')
+    message = json.dumps(encodeData((fun, message)))
     clientSocket.sendto(message,(serverName, serverPort))
     msgFromServer, serverAddress = clientSocket.recvfrom(2048)
-    jsonFromServer = json.loads(msgFromServer)
+    jsonFromServer = decodeData(json.loads(msgFromServer))
     print '==========================\nReply from server:'
     print 'Characters in uppercase: ',
     if fun == 'u':
-        print jsonFromServer
+        print unicode(jsonFromServer)
     if fun in 'db':
         print jsonFromServer[0]
-        print '\nDecimal position in uppercase: ',
-        print jsonFromServer[1]
-    if fun == 'b':
+        if verboseMode:
+            print '\nDecimal position in uppercase: ',
+            print jsonFromServer[1]
+    if fun == 'b' and verboseMode:
         print '\nBinary representation in uppercase: ',
         print jsonFromServer[2]
     
@@ -65,7 +68,11 @@ def roman(fun):
     pass
 
 def sysFunctions(fun):
-    pass
+    # Flip verbose mode
+    if fun == 'v':
+        global verboseMode
+        verboseMode = not verboseMode
+        print 'Verbose mode on: ', verboseMode
 
 def shutdownServer():
     message = json.dumps(('system', 'shutdown'))
