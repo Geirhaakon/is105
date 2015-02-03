@@ -43,9 +43,9 @@ def getCommandCategoryMap():
 
 def upperConvert(fun):
     # Ask user for input, decode, encode, then send.
-    message = raw_input('Input lowercase sentence:').decode('utf8').encode('utf8')
+    message = raw_input('Input lowercase sentence:')
     # Prepend the function to run in the message followed by a colon
-    message = json.dumps((fun, message))
+    message = json.dumps((fun, message)).decode('utf8').encode('utf8')
     clientSocket.sendto(message,(serverName, serverPort))
     msgFromServer, serverAddress = clientSocket.recvfrom(2048)
     jsonFromServer = json.loads(msgFromServer)
