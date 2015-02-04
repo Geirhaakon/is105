@@ -35,12 +35,14 @@ supportedFunc = ('v: turn off or on verbose mode:system',
 # Same idea as the above list.
 # 1st space is the function name
 # 2nd space is the description
-supportedRomanFunc = ('toInt:Convert roman to int',
-                      'toRoman:Convert int to roman',
-                      'add:Add two roman numerals',
-                      'subtract:Subtract two roman numerals',
-                      'mult:multiply two roman numerals',
-                      'divide:divide two roman numerals')
+supportedRomanFunc = ('h:Show this helptext:system',
+                      'e:Go back to the previous menu:system',
+                      'toInt:Convert roman to int:roman',
+                      'toRoman:Convert int to roman:roman',
+                      'add:Add two roman numerals:roman',
+                      'subtract:Subtract two roman numerals:roman',
+                      'mult:multiply two roman numerals:roman',
+                      'divide:divide two roman numerals:roman')
 
 
 
@@ -57,25 +59,27 @@ def startServer():
         messagefromClient = json.loads(message, encoding="utf-8")
         
         decodedMessage = messagefromClient[1]
-        command = messagefromClient[0] #.decode('utf-8')
+        command = messagefromClient[0]
         lab3debug('Message from client is: ' + message)
         lab3debug('Command is:' + command)
         
-        if command == unicode('system') and decodedMessage == unicode('getFunctions'):
+        if command == unicode('system') and decodedMessage == unicode('getUpperFunctions'):
             reply = json.dumps(supportedFunc, encoding="utf-8")
+        if command == unicode('system') and decodedMessage == unicode('getRomanFunctions'):
+            reply = json.dumps(supportedRomanFunc, encoding="utf-8")
         if command == unicode('system') and decodedMessage == unicode('shutdown'):
             print 'Exiting server application'
             break
         if command == unicode('u'):
-            reply = decodedMessage.upper() #.encode('utf-8')
+            reply = decodedMessage.upper()
             reply = json.dumps((reply), encoding="utf-8")
         if command == unicode('d'):
             charReply = reply = ''
             for l in decodedMessage:
-                print type(l)
-                reply += unichr(charToUpperDec(l))#.decode('utf-8')
+                #print type(l)
+                reply += unichr(charToUpperDec(l))
                 charReply += str(charToUpperDec(l)) + ' '
-                print type(reply), type(charReply)
+                #print type(reply), type(charReply)
             print type(reply)
             reply = json.dumps((reply, charReply), encoding="utf-8")
         if command == unicode('b'):
@@ -87,11 +91,24 @@ def startServer():
             reply = json.dumps((reply, charReply, binReply), encoding="utf-8")
             
         # Roman functions
-        if command == unicode('r'):
-            reply = json.dumps(supportedRomanFunc, encoding="utf-8")
-            
-            # Entery a new loop where we accept only roman commands
-
+        if command in ('add', 'subtract', 'mult', 'divide'):
+            left = decodedMessage[0].upper()
+            right = decodedMessage[1].upper()
+        elif command in ('toInt', 'toRoman'):
+            decodedMessage = decodedMessage.upper()
+        if command == unicode('toInt') :
+            reply = json.dumps((toInt(decodedMessage)), encoding="utf-8")
+        if command == unicode('toRoman') :
+            reply = json.dumps((toRoman(decodedMessage)), encoding="utf-8")           
+        if command == unicode('add') :
+            print messagefromClient
+            reply = json.dumps((addRoman(left, right)), encoding="utf-8")
+        if command == unicode('subtract') :
+            reply = json.dumps((subtractRoman(left, right)), encoding="utf-8")
+        if command == unicode('mult') :
+            reply = json.dumps((multiplyRoman(left, right)), encoding="utf-8")
+        if command == unicode('divide') :
+            reply = json.dumps((divideRoman(left, right)), encoding="utf-8")
         lab3debug('Message to client: ' + reply)
         serverSocket.sendto(reply, clientAddress)
 

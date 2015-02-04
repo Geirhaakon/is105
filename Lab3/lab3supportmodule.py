@@ -12,7 +12,10 @@ decimal position in the ascii table
 Returns decimal position of uppercase character
 '''
 def charToUpperDec(c):
-    return ord(c) - 32
+    if ord(c) < 255:
+        return ord(c) - 32
+    else:
+        return ord(c) - 1
 
 def charToUpperBin(c):
     return bitXor(ord(c), 32)
