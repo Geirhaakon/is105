@@ -35,6 +35,7 @@ supportedFunc = ('v: turn off or on verbose mode:system',
 # Same idea as the above list.
 # 1st space is the function name
 # 2nd space is the description
+# 3rd space is the category
 supportedRomanFunc = ('h:Show this helptext:system',
                       'e:Go back to the previous menu:system',
                       'toInt:Convert roman to int:roman',
@@ -52,10 +53,14 @@ serverSocket = socket(AF_INET,SOCK_DGRAM)
 serverSocket.bind((serverHostIP,serverPort))
 print 'The server is ready to receive'
 
+
+""" Main server function"""
 def startServer():
     # Loop which listens for data from a client.
     while 1:
         message, clientAddress = serverSocket.recvfrom(2048)
+        # Load the message received from the client.
+        # The message is in json format.
         messagefromClient = json.loads(message, encoding="utf-8")
         
         decodedMessage = messagefromClient[1]
@@ -63,6 +68,7 @@ def startServer():
         lab3debug('Message from client is: ' + message)
         lab3debug('Command is:' + command)
         
+        # System/application functions
         if command == unicode('system') and decodedMessage == unicode('getUpperFunctions'):
             reply = json.dumps(supportedFunc, encoding="utf-8")
         if command == unicode('system') and decodedMessage == unicode('getRomanFunctions'):
@@ -70,6 +76,8 @@ def startServer():
         if command == unicode('system') and decodedMessage == unicode('shutdown'):
             print 'Exiting server application'
             break
+        
+        # Uppercase functions
         if command == unicode('u'):
             reply = decodedMessage.upper()
             reply = json.dumps((reply), encoding="utf-8")
@@ -91,15 +99,20 @@ def startServer():
             reply = json.dumps((reply, charReply, binReply), encoding="utf-8")
             
         # Roman functions
+        
+        # Certain commands have two parameters, split them into two variables and convert to uppercase
+        # just in case user inputs lowercase
         if command in ('add', 'subtract', 'mult', 'divide'):
             left = decodedMessage[0].upper()
             right = decodedMessage[1].upper()
-        elif command in ('toInt', 'toRoman'):
+        # toInt only has one parameter, just convert it to uppercase
+        elif command in ('toInt'):
             decodedMessage = decodedMessage.upper()
+        
         if command == unicode('toInt') :
             reply = json.dumps((toInt(decodedMessage)), encoding="utf-8")
         if command == unicode('toRoman') :
-            reply = json.dumps((toRoman(decodedMessage)), encoding="utf-8")           
+            reply = json.dumps((toRoman(int(decodedMessage))), encoding="utf-8")           
         if command == unicode('add') :
             print messagefromClient
             reply = json.dumps((addRoman(left, right)), encoding="utf-8")
@@ -109,7 +122,10 @@ def startServer():
             reply = json.dumps((multiplyRoman(left, right)), encoding="utf-8")
         if command == unicode('divide') :
             reply = json.dumps((divideRoman(left, right)), encoding="utf-8")
+            
         lab3debug('Message to client: ' + reply)
+        
+        # Send the reply back to the client
         serverSocket.sendto(reply, clientAddress)
 
 

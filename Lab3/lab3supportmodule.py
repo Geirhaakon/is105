@@ -3,12 +3,14 @@ Created on 2. feb. 2015
 
 @author: GGreibesland
 '''
-#from lab3server import lab3debug
+
 
 '''
 Input c: a character
 It gets converted to uppercase by substracting 32 from its
-decimal position in the ascii table
+decimal position in the ascii table, or by subtracting 1
+if its position in the unicode table is 255 or higher.
+
 Returns decimal position of uppercase character
 '''
 def charToUpperDec(c):
@@ -17,21 +19,23 @@ def charToUpperDec(c):
     else:
         return ord(c) - 1
 
+""" Convert char to uppercase by running bitXor operation """
 def charToUpperBin(c):
     return bitXor(ord(c), 32)
 
+""" Converts to binary """
 def unicodeBin(character):
     return '{0:08b}'.format(ord(character.decode('utf8')))
 
 
-
+""" Bitwise and """
 def bitAnd(x, y):
     return x&y
-
+""" Bitwise Xor"""
 def bitXor(x, y):
     return x^y
 
-
+""" Map used to translate roman numerals to decimals """
 romanNumeralMap = (('M', 1000),
                    ('CM', 900),
                    ('D', 500),
